@@ -16,7 +16,6 @@ class App extends Component {
     filter: '',
   };
 
-  // Добавление нового контакта в список контактов
   addContact = contact => {
     const isInContacts = this.state.contacts.some(
       ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
@@ -31,12 +30,10 @@ class App extends Component {
     }));
   };
 
-  // Изменение значения фильтра
   changeFilter = event => {
     this.setState({ filter: event.target.value });
   };
 
-  // Получение отфильтрованных контактов
   getVisibleContacts = () => {
     const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase();
@@ -46,7 +43,6 @@ class App extends Component {
     );
   };
 
-  // Удаление контакта из списка
   removeContact = contactId => {
     this.setState(prevState => {
       return {
@@ -67,13 +63,11 @@ class App extends Component {
 
         <SubTitle>Contacts</SubTitle>
         {this.state.contacts.length > 0 ? (
-          // Фильтр для отображения контактов
           <Filter value={filter} onChangeFilter={this.changeFilter} />
         ) : (
           <Wrapper>Your phonebook is empty. Add first contact!</Wrapper>
         )}
         {this.state.contacts.length > 0 && (
-          // Список контактов
           <ContactList
             contacts={visibleContacts}
             onRemoveContact={this.removeContact}
